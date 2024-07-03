@@ -2,7 +2,7 @@ FROM node:20.15.0 as node
 
 FROM php:8.2-apache
 
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN echo "ServerName local.crypto" >> /etc/apache2/apache2.conf
 
 RUN apt-get update \
     && apt-get install -qq -y --no-install-recommends \
@@ -13,6 +13,8 @@ RUN apt-get update \
 
 RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
    mv composer.phar /usr/local/bin/composer
+
+RUN curl -sS https://get.symfony.com/cli/installer | bash
 
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install pdo pdo_mysql mysqli gd opcache intl zip calendar dom mbstring zip gd xsl && a2enmod rewrite
