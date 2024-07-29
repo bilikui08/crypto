@@ -7,7 +7,6 @@ services:
     container_name: crypto_apache
     ports:
       - "81:80"
-      - "443:443"
     volumes:
       - .:/var/www/html
       - ./docker/apache/vhosts:/etc/apache2/sites-enabled

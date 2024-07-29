@@ -1,0 +1,11 @@
+# config/test/lexik_jwt_authentication.yaml
+lexik_jwt_authentication:
+    secret_key: '%kernel.project_dir%/config/jwt/private-test.pem'
+    public_key: '%kernel.project_dir%/config/jwt/public-test.pem'
+
+    token_extractors:
+         # look for a token as Authorization Header
+        authorization_header:
+            enabled: true
+            prefix: Bearer
+            name: Authorization

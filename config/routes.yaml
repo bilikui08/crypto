@@ -1,5 +1,32 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+homepage:
+    path: /{any?}
+    defaults: { _controller: App\Controller\DefaultController }
+    requirements:
+        any: '.+'   
+    condition: "!request.isXmlHttpRequest()"
+
+# login:
+#     path: /api/login
+#     controller: FOS\UserBundle\Controller\SecurityController::loginAction
+#     methods: ['GET']
+#     options:
+#         expose: true
+
+# login:
+#     path: /api/login
+#     controller: App\Security\ApiKeyAuthenticator::authenticate
+#     methods: ['POST']
+#     options:
+#         expose: true
+
+api_login_check:
+    path: /api/login_check
+
+api_logout:
+    resource: security.route_loader.logout
+    type: service
+
+user_get:
+    path: /api/user
+    methods: ['POST']
+    controller: App\Controller\User\GetController
